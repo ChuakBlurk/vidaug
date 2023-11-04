@@ -50,7 +50,7 @@ class RandomRotate(object):
     def __call__(self, clip):
         angle = random.uniform(self.degrees[0], self.degrees[1])
         if isinstance(clip[0], np.ndarray):
-            rotated = [skimage.transform.rotate(img, angle) for img in clip]
+            rotated = [skimage.transform.rotate(img, angle, preserve_range=True) for img in clip]
         elif isinstance(clip[0], PIL.Image.Image):
             rotated = [img.rotate(angle) for img in clip]
         else:
